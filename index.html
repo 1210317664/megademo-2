@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMIGA MegaDemo Player</title>
+    <style>
+      :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
+      html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #04060a; }
+      #app { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+      canvas { display: block; width: 100vw; height: 100vh; background: black; }
+      #ui { position: absolute; inset: 0; pointer-events: none; }
+      #panel { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
+      .chip, .panelBox { border: 1px solid rgba(255,255,255,0.18); background: rgba(6,14,24,0.58); color: #eaf7ff; border-radius: 10px; padding: 8px 10px; font-size: 12px; text-shadow: 0 0 8px rgba(130,200,255,0.9); box-shadow: 0 0 12px rgba(0,180,255,0.16), inset 0 0 16px rgba(120,200,255,0.08); }
+      .chip strong, .panelBox strong { color: #fff48b; text-shadow: 0 0 10px rgba(255,180,80,0.5); }
+      #hint { position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+      #titleBar { position: absolute; top: 14px; right: 16px; width: 280px; pointer-events: none; }
+      .amiga-title { font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: #fff; }
+      .rainbow { background: linear-gradient(90deg, #ff4fd8, #8b7cff, #39d7ff, #65ffb4, #ffe06a); -webkit-background-clip: text; color: transparent; filter: drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
+      .scanline { position: absolute; inset: 0; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px); opacity: 0.18; mix-blend-mode: screen; pointer-events: none; }
+      .glow { text-shadow: 0 0 6px rgba(164,230,255,0.6), 0 0 14px rgba(120,180,255,0.25); }
+      .hidden { opacity: 0; transition: opacity 180ms ease; }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="glcanvas"></canvas>
+      <div id="ui">
+        <div id="panel">
+          <div class="chip" id="modeChip">Mode: Normal</div>
+          <div class="chip" id="demoChip">Demo: Plasma</div>
+          <div class="panelBox glow">Copper / Rainbow / Glow / Scanline</div>
+        </div>
+        <div id="titleBar"><div class="chip amiga-title rainbow">AMIGA MegaDemo • WebGL1</div></div>
+        <div class="scanline"></div>
+        <div id="hint"><div class="mini">Tab / F1: UI toggle · D: next demo · Space: test mode</div><div class="mini">AMIGA MegaDemo Player</div></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
